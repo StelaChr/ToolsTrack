@@ -1,0 +1,245 @@
+/* Reset and Base Layout */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background-size: cover;
+  background-position: center;
+  box-sizing: border-box;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 240px;
+  height: 100%;
+  background-color: #eee;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.sidebar a,
+.sidebar .sidebar-link {
+  display: block;
+  margin-bottom: 15px;
+  color: #333;
+  text-decoration: none;
+}
+
+.sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+/* Page Layout */
+.page-wrapper {
+  margin-left: 240px; /* offset entire page content */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main content area */
+.main-content-wrapper {
+  flex: 1;
+  padding: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 1rem;
+  background-color: #f0dfdf;
+  color: #8B4513;
+  font-size: 0.9rem;
+}
+
+/* Form Styling */
+form {
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+  text-align: left;
+}
+
+h1 {
+  color: #8B4513;
+  font-size: 2em;
+  margin-top: 30px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="email"],
+input[type="password"],
+select,
+textarea {
+  width: 100%;
+  padding: 12px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+}
+
+#borrow-fields {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Submit button */
+button[type="submit"] {
+  background-color: #8B4513;
+  color: white;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #5C3317;
+}
+
+/* Utility Classes */
+.text-red-600 {
+  color: red;
+}
+
+.hidden {
+  display: none;
+}
+
+.spaced-top {
+  margin-top: 2rem;
+}
+
+/* Voice Input Field */
+.input-voice-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.input-voice-wrapper input,
+.input-voice-wrapper textarea {
+  flex: 1;
+}
+
+.voice-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: #8B4513;
+  font-size: 1.2rem;
+  transition: color 0.2s ease;
+}
+
+.voice-btn:hover {
+  color: #5C3317;
+}
+
+.mic-icon {
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.voice-btn:hover .mic-icon {
+  opacity: 1;
+}
+
+/* Form Group Spacing */
+.form-group {
+  margin-top: 20px;
+}
+
+.form-group:first-child {
+  margin-top: 0;
+}
+
+/* Add Category Link */
+.add-category-link {
+  font-size: 0.9rem;
+  background-color: #eee;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.add-category-link:hover {
+  background-color: #ccc;
+}
+
+/* Image Upload Styling */
+.image-upload {
+  margin-top: 20px;
+}
+
+.image-preview-wrapper img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.custom-file-upload {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.custom-file-upload button {
+  background-color: #1f78ff;
+  color: white;
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.custom-file-upload button.remove-btn {
+  background-color: #888;
+}
+
+.custom-file-upload button:hover {
+  opacity: 0.9;
+}
+
+.hidden-input {
+  display: none;
+}
+
+/* Category Select Wrapper */
+.category-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}

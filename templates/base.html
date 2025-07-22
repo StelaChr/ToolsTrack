@@ -1,0 +1,59 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}ToolsTrack{% endblock %}</title>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{% static 'styles/base.css' %}" />
+<link rel="stylesheet" href="{% static 'styles/sidebar.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">>
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+  <!-- Navbar -->
+<div class="sidebar">
+  <a href="{% url 'home' %}" class="logo" style="text-decoration: none;">
+    <i class="fa-solid fa-toolbox"></i>
+    ToolsTrack
+  </a>
+  <a href="{% url 'dashboard' %}">
+    <i class="fa-solid fa-screwdriver-wrench"></i> All Tools
+  </a>
+  <a href="{% url 'create-tool' %}">
+    <i class="fa-solid fa-plus"></i> Create Tool
+  </a>
+{% if not request.user.is_authenticated %}
+  <a href="{% url 'register' %}">
+    <i class="fa-solid fa-user-plus"></i> Sign Up
+  </a>
+    <a href="{% url 'login' %}">
+    <i class="fa-solid fa-user"></i> Login
+  </a>
+{% else %}
+    <form method="post" action="{% url 'logout' %}" class = 'logout-form'> {% csrf_token %} <button class="sidebar-link" type="submit"><i class ="fa-solid fa-right-from-bracket"></i>Logout</button> </form>
+{% endif %}
+</div>
+
+  <!-- Page Content -->
+
+
+  <!-- Footer -->
+  <div class="page-wrapper">
+
+      <main class="main-content-wrapper">
+        {% block content %}{% endblock %}
+      </main>
+      <footer class="footer">
+        <small>2025 ToolsTrack by Stela Hristova. All rights reserved.</small>
+      </footer>
+  </div>
+
+  {% block extra_scripts %}{% endblock %}
+</body>
+</html>

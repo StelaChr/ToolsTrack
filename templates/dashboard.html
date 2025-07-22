@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'styles/tools.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="form-section">
+    <div class="form-box">
+<div class="container">
+    <h1>Your Tool Categories</h1>
+
+    <form method="get" action="" class="search-form">
+        <input type="text" name="q" placeholder="Search tools..." value="{{ search_query }}">
+        <button type="submit">Search</button>
+    </form>
+
+    {% if tools %}
+        <h2>{% if search_query %}Search Results{% else %}All Your Tools{% endif %}</h2>
+        <div class="tool-grid">
+            {% for tool in tools %}
+                <div class="tool-card">
+                    {% if tool.photo %}
+                        <img src="{{ tool.photo.url }}" alt="{{ tool.name }}">
+                    {% else %}
+                         <img src="{% static 'images/0-1566_tool-png-transparent-image-tools-black-and-white.png' %}" alt="No image available">
+                    {% endif %}
+                    <h3>{{ tool.name }}</h3>
+                    <p><strong>Tracking #:</strong> {{ tool.tracking_number }}</p>
+                    <a href="{% url 'tool-detail' tool.id %}" class="btn">Details</a>
+                </div>
+            {% endfor %}
+        </div>
+    {% elif categories %}
+        <ul class="category-list">
+            {% for category in categories %}
+                <li class="category-item">
+                    <a href="{% url 'category-tools' category.id %}?q={{ search_query|urlencode }}">
+                        {{ category.name }} ({{ category.tool_count }})
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No tools found{% if search_query %} matching your search{% endif %}.</p>
+    {% endif %}
+
+</div>
+    </div>
+    </main>
+{% endblock %}}

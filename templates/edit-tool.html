@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Edit Tool{% endblock %}
+
+{% block extra_head %}
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+    <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+{% endblock %}
+
+{% block content %}
+    <main class="form-section">
+    <div class="form-box">
+  <h1>Edit Tool</h1>
+
+  <form method="POST" action="{% url 'edit-tool' pk=tool.pk %}" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    {% if error %}
+      <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% for field in form %}
+      {% if field.name == 'category' %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          <div style="display: flex; align-items: center; gap: 10px;">
+            {{ field }}
+            <a href="{% url 'create-category' %}" class="add-category-link">+ Add Category</a>
+          </div>
+          {% if field.errors %}
+            <p class="error">{{ field.errors }}</p>
+          {% endif %}
+        </div>
+
+      {% elif field.name != 'is_borrowed' %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          <div class="input-voice-wrapper">
+            {{ field }}
+            {% if field.name in mic_fields %}
+              <button type="button"
+                      class="voice-btn"
+                      onmousedown="startDictation('{{ field.id_for_label }}')"
+                      onmouseup="stopDictation()"
+                      ontouchstart="startDictation('{{ field.id_for_label }}')"
+                      ontouchend="stopDictation()"
+                      title="Press and hold to speak">
+                <i class="fa-solid fa-microphone mic-icon"></i>
+              </button>
+            {% endif %}
+          </div>
+          {% if field.errors %}
+            <p class="error">{{ field.errors }}</p>
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endfor %}
+
+    <div class="form-group checkbox-group">
+      {{ form.is_borrowed }}
+      <label for="{{ form.is_borrowed.id_for_label }}">Borrowed?</label>
+    </div>
+
+    <div id="borrow-fields" class="form-group hidden">
+      <h3>Borrower Info</h3>
+      {% for field in borrow_form %}
+        <div class="form-group">
+          <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+          {{ field }}
+          {% if field.errors %}
+            <p class="error">{{ field.errors }}</p>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    <button type="submit" class="submit-btn spaced-top">Save Tool</button>
+  </form>
+    </div>
+    </main>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const checkbox = document.getElementById('{{ form.is_borrowed.id_for_label }}');
+    const borrowFields = document.getElementById('borrow-fields');
+
+    function toggleBorrowSection() {
+      const inputs = borrowFields.querySelectorAll('input, select, textarea');
+      if (checkbox.checked) {
+        borrowFields.classList.remove('hidden');
+        inputs.forEach(input => input.disabled = false);
+      } else {
+        borrowFields.classList.add('hidden');
+        inputs.forEach(input => input.disabled = true);
+      }
+    }
+
+    if (checkbox) {
+      checkbox.addEventListener('change', toggleBorrowSection);
+      toggleBorrowSection(); // Run it on page load
+    }
+  });
+
+  function startDictation(fieldId) {
+    if (!('webkitSpeechRecognition' in window)) {
+      alert("Your browser doesn't support speech recognition. Try using Chrome.");
+      return;
+    }
+
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = 'en-US';
+    recognition.interimResults = false;
+    recognition.maxAlternatives = 1;
+
+    recognition.onresult = function(event) {
+      const result = event.results[0][0].transcript;
+      document.getElementById(fieldId).value = result;
+    };
+
+    recognition.onerror = function(event) {
+      alert('Speech recognition error: ' + event.error);
+    };
+
+    recognition.start();
+  }
+
+  function stopDictation() {}
+</script>
+{% endblock %}

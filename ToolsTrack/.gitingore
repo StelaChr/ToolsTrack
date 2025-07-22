@@ -1,0 +1,26 @@
+# Python cache files
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Environment variables
+.env
+
+# Virtual environment (if it's inside your project folder)
+venv/
+env/
+
+# IDE/editor-specific files
+.idea/
+.vscode/
+
+# Static & media (only if auto-generated)
+staticfiles/
+media/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files (optional)
+*.log

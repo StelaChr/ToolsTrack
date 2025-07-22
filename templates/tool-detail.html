@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'styles/tool-detail.css' %}">
+     <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+{% endblock %}
+
+{% block title %}Tool Details{% endblock %}
+
+{% block content %}
+<div class="tool-card narrow-card">
+  <h1>{{ tool.name }}</h1>
+
+  <div class="details-grid">
+    <!-- LEFT SIDE: TOOL IMAGE + DETAILS -->
+    <div class="tool-section {% if borrow %}framed-box{% endif %}">
+      {% if tool.photo %}
+        <img src="{{ tool.photo.url }}" alt="{{ tool.name }}" class="tool-photo">
+      {% endif %}
+      <p><strong>Category:</strong> {{ tool.category }}</p>
+      <p><strong>Brand:</strong> {{ tool.brand_name }}</p>
+      <p><strong>Inventory Number:</strong> {{ tool.tracking_number }}</p>
+      <p><strong>Room:</strong> {{ tool.room }}</p>
+      <p><strong>Section number:</strong> {{ tool.section }}</p>
+      <p><strong>Is Borrowed:</strong> {{ tool.is_borrowed|yesno:"Yes,No" }}</p>
+    </div>
+
+    <!-- RIGHT SIDE: ONLY SHOW IF BORROW EXISTS -->
+    {% if borrow %}
+    <div class="tool-section framed-box">
+      <img src="{% static 'images/borrow image.jpg' %}" alt="Borrow info" class="tool-photo" />
+
+      <div class="borrow-info">
+        <h3>Borrow Info</h3>
+        <p><strong>Name:</strong> {{ borrow.borrower_name }}</p>
+        <p><strong>Borrow Date:</strong> {{ borrow.borrow_date }}</p>
+        <p><strong>Expected Return:</strong> {{ borrow.expected_return_date }}</p>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+
+  <div class="btn-group">
+    <a href="{% url 'maintenance-create' tool.pk %}" class="btn btn-outline-primary">➕ Add Maintenance Details</a>
+     <a href="{% url 'maintenance-records' tool.pk %}" class="btn btn-outline-secondary">🛠️ Maintenance Info</a> 
+      <a href="{% url 'edit-tool' tool.pk %}" class="btn btn-outline-danger">🗑️ Edit Tool</a>
+      <a href="{% url 'tool-delete' tool.pk %}" class="btn btn-outline-danger">🗑️ Delete Tool</a> 
+  </div>
+</div>
+{% endblock %}

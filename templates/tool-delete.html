@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'styles/tool-delete.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+{% endblock %}
+
+{% block title %}Delete Tool{% endblock %}
+
+{% block content %}
+<div class="tool-card narrow-card">
+  <h1>Delete Tool</h1>
+  <p>Are you sure you want to delete <strong>{{ object.name }}</strong>?</p>
+
+<form method="post">
+  {% csrf_token %}
+  <div class="btn-group center-buttons">
+    <button type="submit" class="btn btn-danger">🗑️ Yes, Delete</button>
+    <a href="{% url 'tool-detail' object.pk %}" class="btn btn-danger-outline">Cancel</a>
+  </div>
+</form>
+</div>
+{% endblock %}

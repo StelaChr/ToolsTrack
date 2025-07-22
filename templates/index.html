@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+{% endblock %}
+
+{% block content %}
+  <header class="hero-container">
+    <img src="{% static 'images/storage tools.jpg' %}" alt="Tool Storage" class="hero-image" />
+    <div class="hero-text">
+      <h1>ToolsTrack helps you keep records of all home tools in the storage.</h1>
+    </div>
+  </header>
+{% endblock %}

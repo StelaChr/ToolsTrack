@@ -1,0 +1,81 @@
+
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 220px;
+  background-color: #f0dfdf; /* dark background */
+  color: white;
+  padding: 20px 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.sidebar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #8b4513;
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.sidebar .logo i {
+  margin-right: 10px;
+}
+
+.sidebar a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #5a3e2b;
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+}
+
+.sidebar a:hover,
+.sidebar a.active {
+  background-color: #ffa366;
+  color: #fff;
+}
+
+.sidebar a i {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+.logout-form {
+  margin: 0;
+  padding: 0;
+}
+
+.logout-form .sidebar-link {
+  all: unset; /* RESET all browser default styles */
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #5a3e2b;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 0.5rem;
+}
+
+.logout-form .sidebar-link i {
+  margin-right: 12px;
+  font-size: 1.2rem;
+}
+
+.logout-form .sidebar-link:hover {
+  background-color: #ffa366;
+  color: #fff;
+}

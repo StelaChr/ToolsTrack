@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'styles/tools.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+    
+    <div class="form-box">
+    <h1>{{ category.name }}</h1>
+
+<div class="tool-grid">
+    {% for tool in tools %}
+        <div class="tool-card">
+            {% if tool.photo %}
+                <img src="{{ tool.photo.url }}" alt="{{ tool.name }}">
+            {% else %}
+                <img src="{% static 'images/0-1566_tool-png-transparent-image-tools-black-and-white.png' %}" alt="No image available">
+            {% endif %}
+            <h3>{{ tool.name }}</h3>
+            <p><strong>Tracking #:</strong> {{ tool.tracking_number }}</p>
+            <a href="{% url 'tool-detail' tool.id %}" class="btn">Details</a>
+        </div>
+    {% endfor %}
+</div>
+
+    <div style="margin-top: 2rem;">
+        <a href="{% url 'dashboard' %}?q={{ search_query }}" class="btn">Back to Dashboard</a>
+    </div>
+    </div>
+{% endblock %}

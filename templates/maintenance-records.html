@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block extra_head %}
+  <link rel="stylesheet" href="{% static 'styles/maintenance-records.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/maintenance.css' %}">
+{% endblock %}
+
+{% block title %}Maintenance Records - {{ tool.name }}{% endblock %}
+
+{% block content %}
+    <main class="form-section">
+    <div class="form-box">
+<div class="tool-card narrow-card">
+  <h1>Maintenance Records</h1>
+  <h3>{{ tool.name }}</h3>
+
+  {% if maintenance_records %}
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Performed By</th>
+          <th>Cost</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for record in maintenance_records %}
+          <tr>
+            <td>{{ record.date }}</td>
+            <td>{{ record.maintenance_type }}</td>
+            <td>{{ record.performed_by }}</td>
+            <td>${{ record.cost|default:"—" }}</td>
+            <td>{{ record.notes|default:"—" }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No maintenance records available for this tool.</p>
+  {% endif %}
+
+<div class="btn-center">
+  <a href="{% url 'tool-detail' tool.pk %}" class="btn">Back to Tool Details</a>
+</div>
+</div>
+    </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block title %}Add a New Category{% endblock %}
+
+{% block extra_head %}
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
+     <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+{% endblock %}
+
+{% block content %}
+     <main class="form-section">
+    <div class="form-box">
+  <h1>Create New Category</h1>
+
+  <form method="POST" action="{% url 'create-category' %}">
+    {% csrf_token %}
+
+    {% for field in form %}
+      <div class="form-group">
+        <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}
+          <p class="error">{{ field.errors }}</p>
+        {% endif %}
+      </div>
+    {% endfor %}
+
+    <button type="submit" class="submit-btn" style="margin-top: 2rem;">Save Category</button>
+  </form>
+    </div>
+     </main>
+{% endblock %}
