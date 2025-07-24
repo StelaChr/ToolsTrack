@@ -55,13 +55,17 @@ class CreateToolForm(BaseClassToolForm):
 class BorrowForm(forms.ModelForm):
     class Meta:
         model = Borrow
-        fields = ['borrower_name', 'borrower_contact', 'borrowed_at']
+        fields = ['borrower_name', 'borrower_contact', 'borrowed_at', 'returned_at']
         widgets = {
             'borrower_name': forms.TextInput(attrs={'class': 'form-control', 'label': 'Borrower Name'}),
             'borrower_contact': forms.TextInput(attrs={'class': 'form-control', 'label': 'Borrower Contact', 'placeholder': 'Email, phone etc.'}),
-            'borrowed_at': forms.DateTimeInput(attrs={
+            'borrowed_at': forms.DateInput(attrs={
                 'class': 'form-control',
-                'type': 'datetime-local'  # this makes it a browser-native datetime picker
+                'type': 'date'  # this makes it a browser-native datetime picker
+            }),
+            'returned_at': forms.DateInput(attrs={
+                'class': 'form-control',
+                'type': 'date'  # this makes it a browser-native datetime picker
             }),
         }
 

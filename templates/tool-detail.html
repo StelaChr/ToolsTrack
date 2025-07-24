@@ -34,8 +34,8 @@
       <div class="borrow-info">
         <h3>Borrow Info</h3>
         <p><strong>Name:</strong> {{ borrow.borrower_name }}</p>
-        <p><strong>Borrow Date:</strong> {{ borrow.borrow_date }}</p>
-        <p><strong>Expected Return:</strong> {{ borrow.expected_return_date }}</p>
+        <p><strong>Borrow Date:</strong> {{ borrow.borrowed_at|date }}</p>
+        <p><strong>Expected Return:</strong> {{ borrow.returned_at|date }}</p>
       </div>
     </div>
     {% endif %}
