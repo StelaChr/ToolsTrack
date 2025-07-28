@@ -11,3 +11,7 @@ class CategoryForm(forms.ModelForm):
             'name': forms.TextInput(attrs={'class': 'input-field'}),
             'description': forms.Textarea(attrs={'class': 'input-field', 'rows': 3}),
         }
+
+    def __init__(self, *args, user=None, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.user = user  # Store the user for use in clean methods, etc.

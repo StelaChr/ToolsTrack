@@ -60,18 +60,26 @@
           <label for="{{ form.is_borrowed.id_for_label }}">Borrowed?</label>
         </div>
 
-        <div id="borrow-fields" class="form-group hidden">
-          <h3>Borrower Info</h3>
-          {% for field in borrow_form %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              {{ field }}
-              {% if field.errors %}
-                <p class="error">{{ field.errors }}</p>
-              {% endif %}
-            </div>
-          {% endfor %}
-        </div>
+     <div id="borrow-fields" class="form-group hidden">
+  <h3>Borrower Info</h3>
+  {# Show non-field errors here #}
+  {% if borrow_form.non_field_errors %}
+    <ul class="errorlist">
+      {% for error in borrow_form.non_field_errors %}
+        <li class="error">{{ error }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+  {% for field in borrow_form %}
+    <div class="form-group">
+      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+      {{ field }}
+      {% if field.errors %}
+        <p class="error">{{ field.errors }}</p>
+      {% endif %}
+    </div>
+  {% endfor %}
+</div>
 
         <button type="submit" class="submit-btn spaced-top">Save Tool</button>
       </form>

@@ -1,4 +1,5 @@
 from django import forms
+from django.core.exceptions import ValidationError
 
 from category.models import Category
 from .models import Tool, Borrow
@@ -68,6 +69,14 @@ class BorrowForm(forms.ModelForm):
                 'type': 'date'  # this makes it a browser-native datetime picker
             }),
         }
+
+    def clean(self):
+        cleaned_data = super().clean()
+        borrowed_at = cleaned_data.get('borrowed_at')
+        returned_at = cleaned_data.get('returned_at')
+        if borrowed_at and returned_at and returned_at < borrowed_at:
+            raise ValidationError("Return date cannot be before borrow date.")
+        return cleaned_data
 
 
 class ToolEditForm(BaseClassToolForm):

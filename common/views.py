@@ -23,9 +23,9 @@ def dashboard_view(request):
         tools_qs = tools_qs.filter(
             Q(name__iexact=search_query) |
             Q(brand_name__iexact=search_query) |
-            Q(tracking_number__iexact=search_query) |
+            Q(inventory_number=search_query) |
             Q(room__iexact=search_query) |
-            Q(section__iexact=search_query)
+            Q(section_number=search_query)
         )
 
     categories = Category.objects.filter(

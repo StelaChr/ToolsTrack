@@ -12,14 +12,14 @@ from .models import Category
 @login_required
 def create_category(request):
     if request.method == 'POST':
-        form = CategoryForm(request.POST)
+        form = CategoryForm(request.POST, user=request.user)
         if form.is_valid():
             category = form.save(commit=False)   # ⛔ Don't save yet
             category.owner = request.user        # ✅ Assign the logged-in user
             category.save()                      # ✅ Now save to DB
             return redirect('create-tool')
     else:
-        form = CategoryForm()
+        form = CategoryForm(user=request.user)
 
     return render(request, 'create-category.html', {'form': form})
 
