@@ -18,6 +18,9 @@
       <div class="form-group">
         <label>{{ field.label_tag }}</label>
         {{ field }}
+        {% if field.field.required %}
+            <small class="form-text text-muted">*Required field</small>
+          {% endif %}
         {% if field.errors %}
           <p class="error">{{ field.errors }}</p>
         {% endif %}

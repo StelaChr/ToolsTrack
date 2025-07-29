@@ -24,6 +24,9 @@
       <div class="form-group">
         <label for="{{ field.id_for_label }}">{{ field.label }}</label>
         {{ field }}
+        {% if field.field.required %}
+            <small class="form-text text-muted">*Required field</small>
+          {% endif %}
         {% if field.errors %}
           <p class="error">{{ field.errors }}</p>
         {% endif %}

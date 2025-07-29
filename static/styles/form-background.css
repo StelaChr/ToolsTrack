@@ -28,3 +28,8 @@ html, body {
   width: 100%;
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
 }
+
+.form-text.text-muted {
+  font-size: 0.85em;
+  color: #6c757d;
+}

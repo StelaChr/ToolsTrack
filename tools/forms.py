@@ -15,10 +15,7 @@ class BaseClassToolForm(forms.ModelForm):
 
 
 class CreateToolForm(BaseClassToolForm):
-    category = forms.ModelChoiceField(
-        queryset=Category.objects.none(),
-        widget=forms.Select(attrs={'class': 'form-select'})
-    )
+
 
     class Meta:
         model = Tool
@@ -42,6 +39,7 @@ class CreateToolForm(BaseClassToolForm):
             'inventory_number': 'Inventory Number',
             'is_borrowed': 'Is Borrowed',
         }
+
 
     def __init__(self, *args, user=None, **kwargs):
         super().__init__(*args, **kwargs)

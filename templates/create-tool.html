@@ -4,87 +4,80 @@
 {% block title %}Add a New Tool{% endblock %}
 
 {% block extra_head %}
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
-    <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="{% static 'styles/form-background.css' %}">
 {% endblock %}
 
 {% block content %}
-
-  <main class="form-section">
-    <div class="form-box">
+<main class="form-section">
+  <div class="form-box">
     <h1>Create new tool</h1>
-      <form method="POST" action="{% url 'create-tool' %}" enctype="multipart/form-data">
-        {% csrf_token %}
 
-        {% for field in form %}
-          {% if field.name == 'category' %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              <div class="category-select-wrapper">
-                {{ field }}
-                <a href="{% url 'create-category' %}" class="add-category-link">+ Add Category</a>
-              </div>
-              {% if field.errors %}
-                <p class="error">{{ field.errors }}</p>
-              {% endif %}
+    <form method="POST" action="{% url 'create-tool' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      {% for field in form %}
+        {% if field.name == 'category' %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            <div class="category-select-wrapper">
+              {{ field }}
+              <a href="{% url 'create-category' %}" class="add-category-link">+ Add Category</a>
             </div>
-          {% elif field.name != 'is_borrowed' %}
-            <div class="form-group">
-              <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-              <div class="input-voice-wrapper">
-                {{ field }}
-                {% if field.name in "['category', 'name', 'brand_name']" %}
-                  <button type="button"
-                          class="voice-btn"
-                          onmousedown="startDictation('{{ field.id_for_label }}')"
-                          onmouseup="stopDictation()"
-                          ontouchstart="startDictation('{{ field.id_for_label }}')"
-                          ontouchend="stopDictation()"
-                          title="Press and hold to speak">
-                    <i class="fa-solid fa-microphone mic-icon"></i>
-                  </button>
-                {% endif %}
-              </div>
-              {% if field.errors %}
-                <p class="error">{{ field.errors }}</p>
-              {% endif %}
-            </div>
-          {% endif %}
-        {% endfor %}
-
-        <div class="form-group checkbox-group">
-          {{ form.is_borrowed }}
-          <label for="{{ form.is_borrowed.id_for_label }}">Borrowed?</label>
-        </div>
-
-     <div id="borrow-fields" class="form-group hidden">
-  <h3>Borrower Info</h3>
-  {# Show non-field errors here #}
-  {% if borrow_form.non_field_errors %}
-    <ul class="errorlist">
-      {% for error in borrow_form.non_field_errors %}
-        <li class="error">{{ error }}</li>
+            {% if field.field.required %}
+              <small class="form-text text-muted">*Required field</small>
+            {% endif %}
+            {% if field.errors %}
+              <p class="error">{{ field.errors }}</p>
+            {% endif %}
+          </div>
+        {% elif field.name != 'is_borrowed' %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.field.required %}
+              <small class="form-text text-muted">*Required field</small>
+            {% endif %}
+            {% if field.errors %}
+              <p class="error">{{ field.errors }}</p>
+            {% endif %}
+          </div>
+        {% endif %}
       {% endfor %}
-    </ul>
-  {% endif %}
-  {% for field in borrow_form %}
-    <div class="form-group">
-      <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-      {{ field }}
-      {% if field.errors %}
-        <p class="error">{{ field.errors }}</p>
-      {% endif %}
-    </div>
-  {% endfor %}
-</div>
 
-        <button type="submit" class="submit-btn spaced-top">Save Tool</button>
-      </form>
-    </div>
-  </main>
+      <div class="form-group checkbox-group">
+        {{ form.is_borrowed }}
+        <label for="{{ form.is_borrowed.id_for_label }}">Borrowed?</label>
+      </div>
+
+      <div id="borrow-fields" class="form-group hidden">
+        <h3>Borrower Info</h3>
+        {% if borrow_form.non_field_errors %}
+          <ul class="errorlist">
+            {% for error in borrow_form.non_field_errors %}
+              <li class="error">{{ error }}</li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+
+        {% for field in borrow_form %}
+          <div class="form-group">
+            <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+            {{ field }}
+            {% if field.field.required %}
+              <small class="form-text text-muted">*Required field</small>
+            {% endif %}
+            {% if field.errors %}
+              <p class="error">{{ field.errors }}</p>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+
+      <button type="submit" class="submit-btn spaced-top">Save Tool</button>
+    </form>
+  </div>
+</main>
 {% endblock %}
 
 {% block extra_scripts %}
@@ -106,38 +99,11 @@
 
     if (checkbox) {
       checkbox.addEventListener('change', toggleBorrowSection);
-      toggleBorrowSection(); // Run it on page load
+      toggleBorrowSection(); // Run on page load
     }
   });
 
-  function startDictation(fieldId) {
-    if (!('webkitSpeechRecognition' in window)) {
-      alert("Your browser doesn't support speech recognition. Try using Chrome.");
-      return;
-    }
-
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = 'en-US';
-    recognition.interimResults = false;
-    recognition.maxAlternatives = 1;
-
-    recognition.onresult = function(event) {
-      const result = event.results[0][0].transcript;
-      document.getElementById(fieldId).value = result;
-    };
-
-    recognition.onerror = function(event) {
-      alert('Speech recognition error: ' + event.error);
-    };
-
-    recognition.start();
-  }
-
-  function stopDictation() {}
-</script>
-
-
-<script>
+  // Local storage autosave (optional)
   document.addEventListener('DOMContentLoaded', () => {
     const form = document.querySelector('form');
     if (!form) return;
@@ -175,5 +141,5 @@
       });
     });
   });
-</script>    
+</script>
 {% endblock %}
