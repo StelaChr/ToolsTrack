@@ -47,6 +47,7 @@ class CreateToolForm(BaseClassToolForm):
             self.fields['category'].queryset = Category.objects.all()  # or filter by user
         else:
             self.fields['category'].queryset = Category.objects.none()
+        self.fields['category'].empty_label = "Choose a category"
 
 
 

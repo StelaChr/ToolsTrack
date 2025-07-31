@@ -137,3 +137,7 @@ class ToolDeleteView(LoginRequiredMixin, UserPassesTestMixin,DeleteView):
     model = Tool
     template_name = 'tool-delete.html'
     success_url = reverse_lazy('dashboard')
+
+    def test_func(self):
+        tool = self.get_object()
+        return self.request.user == tool.owner
