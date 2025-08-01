@@ -22,7 +22,7 @@ class Tool(models.Model):
     inventory_number = models.CharField(max_length=20)
     is_borrowed = models.BooleanField(default=False)
     room = models.CharField(max_length=20, null=True, blank=True)
-    section_number = models.CharField(max_length=20, null=True, blank=True)
+    section_number = models.CharField(max_length=20)
 
 
     def __str__(self):

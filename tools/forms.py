@@ -6,6 +6,7 @@ from .models import Tool, Borrow
 
 from django import forms
 from .models import Tool, Category
+from django.db.models import Q
 
 
 class BaseClassToolForm(forms.ModelForm):
@@ -44,10 +45,10 @@ class CreateToolForm(BaseClassToolForm):
     def __init__(self, *args, user=None, **kwargs):
         super().__init__(*args, **kwargs)
         if user and user.is_authenticated:
-            self.fields['category'].queryset = Category.objects.all()  # or filter by user
+            self.fields['category'].queryset = Category.objects.all()
         else:
             self.fields['category'].queryset = Category.objects.none()
-        self.fields['category'].empty_label = "Choose a category"
+        self.fields['category'].empty_label = "Choose from your categories"
 
 
 
