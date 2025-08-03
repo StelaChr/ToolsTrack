@@ -1,0 +1,65 @@
+.tool-card.narrow-card {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 3px solid #8B4513;
+  border-radius: 12px;
+  background-color: #fff8f0;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* GROUPING FOR BUTTONS */
+.btn-group {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+}
+
+/* ✅ New: Center the button group */
+.center-buttons {
+  justify-content: center;
+}
+
+/* SHARED BASE BUTTON STYLES */
+.btn {
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  border: 1px solid #8B4513;
+  color: #8B4513;
+  background-color: transparent;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* PRIMARY (brown) hover */
+.btn:hover {
+  background-color: #8B4513;
+  color: white;
+}
+
+/* ✅ RED SOLID DELETE BUTTON */
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c82333;
+}
+
+/* ✅ RED OUTLINE CANCEL BUTTON */
+.btn-danger-outline {
+  border: 1px solid #dc3545;
+  color: #dc3545;
+  background-color: transparent;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.btn-danger-outline:hover {
+  background-color: #dc3545;
+  color: white;
+}

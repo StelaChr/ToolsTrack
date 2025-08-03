@@ -1,0 +1,40 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1.5rem;
+}
+
+.table th, .table td {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f5f5f5;
+}
+
+.btn.mt-3 {
+  margin-top: 5rem !important;
+}
+
+.btn-center {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.btn {
+    padding: 0.6rem 1.2rem;
+    text-decoration: none;
+    border-radius: 6px;
+    border: 1px solid #8B4513;
+    color: #8B4513;
+    background-color: transparent;
+    text-align: center;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #8B4513;
+    color: white;
+}

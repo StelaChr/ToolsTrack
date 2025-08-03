@@ -1,0 +1,35 @@
+/* Make background image cover full viewport */
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  background: url('../images/tools 3.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Center the form vertically and horizontally */
+.form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Style the form box */
+.form-box {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(6px);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  width: 100%;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+}
+
+.form-text.text-muted {
+  font-size: 0.85em;
+  color: #6c757d;
+}

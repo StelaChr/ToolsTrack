@@ -1,0 +1,35 @@
+.hero-container {
+  position: relative;
+  width: 100%;
+  max-height: 600px;
+  overflow: hidden;
+}
+
+.hero-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hero-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  padding: 1rem 2rem;
+  background: rgba(255, 255, 255, 0.6); /* white with 60% opacity */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: #000;  /* switch text to black for contrast */
+  font-size: 1rem;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .hero-text {
+    font-size: 0.9rem;
+    padding: 0.8rem 1.5rem;
+  }
+}

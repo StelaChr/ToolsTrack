@@ -1,0 +1,13 @@
+.add-category-link {
+  font-size: 0.9rem;
+  background-color: #eee;
+  padding: 6px 10px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.add-category-link:hover {
+  background-color: #ccc;
+}

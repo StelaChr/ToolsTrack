@@ -1,0 +1,79 @@
+/* ---------- Tool Detail Card Container ---------- */
+.tool-card.narrow-card {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 3px solid #8B4513; /* Brown */
+  border-radius: 12px;
+  background-color: #f0dfdf;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* ---------- Grid Layout ---------- */
+.details-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+}
+
+/* ---------- Each Section in the Grid ---------- */
+.tool-section {
+  flex: 1 1 300px;
+  max-width: 350px;
+  min-height: 400px;  /* Optional for balanced layout */
+}
+
+/* ---------- Tool Photo ---------- */
+.tool-photo {
+  width: 100%;
+  height: 200px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+/* ---------- Framed Section ---------- */
+.framed-box {
+  border: 2px solid #8B4513;
+  border-radius: 8px;
+  padding: 1rem;
+  background-color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* ---------- Button Group Wrapper ---------- */
+.btn-group {
+  margin-top: 2rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  padding: 0.6rem 1.2rem;
+  min-width: 220px;  /* Ensures consistent button width */
+  height: 48px;      /* Ensures consistent height */
+  text-decoration: none;
+  border-radius: 6px;
+  border: 1px solid #8B4513;
+  color: #8B4513;
+  background-color: transparent;
+  transition: background-color 0.2s ease;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+/* ---------- Button Hover ---------- */
+.btn:hover {
+  background-color: #8B4513;
+  color: white;
+}
