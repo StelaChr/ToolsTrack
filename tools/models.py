@@ -1,3 +1,4 @@
+from cloudinary.models import CloudinaryField
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User
 from django.db import models
@@ -18,7 +19,7 @@ class Tool(models.Model):
     category = models.ForeignKey('category.Category', on_delete=models.CASCADE, related_name='tools')
     name = models.CharField(max_length=20)
     brand_name = models.CharField(max_length=20, null=True, blank=True)
-    photo = models.ImageField(null=True, blank=True, upload_to='files')
+    photo = models.ImageField(upload_to='files', null=True, blank=True)
     inventory_number = models.CharField(max_length=20)
     is_borrowed = models.BooleanField(default=False)
     room = models.CharField(max_length=20, null=True, blank=True)

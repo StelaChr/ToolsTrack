@@ -51,7 +51,8 @@ INSTALLED_APPS = [
     'common',
     'accounts',
     'category',
-    'maintenance'
+    'maintenance',
+
 ]
 
 MIDDLEWARE = [
@@ -84,7 +85,9 @@ TEMPLATES = [
 ]
 
 STORAGES = {
-    # ...
+    "default": {
+        "BACKEND": "django.core.files.storage.FileSystemStorage",
+    },
     "staticfiles": {
         "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
     },
@@ -159,5 +162,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'accounts.AppUser'
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 LOGOUT_REDIRECT_URL = reverse_lazy('login')
+
+
+
+
 
 
