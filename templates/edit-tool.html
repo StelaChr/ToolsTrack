@@ -28,10 +28,13 @@
       {% if field.name == 'category' %}
         <div class="form-group">
           <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          <div style="display: flex; align-items: center; gap: 10px;">
-            {{ field }}
-            <a href="{% url 'create-category' %}" class="add-category-link">+ Add Category</a>
-          </div>
+          <div class="category-select-wrapper">
+              {{ field }}
+              <a href="{% url 'create-category' %}" class="add-category-link">+ Add Category</a>
+            </div>
+            {% if field.field.required %}
+              <small class="form-text text-muted">*Required field</small>
+            {% endif %}
           {% if field.errors %}
             <p class="error">{{ field.errors }}</p>
           {% endif %}
@@ -40,20 +43,10 @@
       {% elif field.name != 'is_borrowed' %}
         <div class="form-group">
           <label for="{{ field.id_for_label }}">{{ field.label }}</label>
-          <div class="input-voice-wrapper">
-            {{ field }}
-            {% if field.name in mic_fields %}
-              <button type="button"
-                      class="voice-btn"
-                      onmousedown="startDictation('{{ field.id_for_label }}')"
-                      onmouseup="stopDictation()"
-                      ontouchstart="startDictation('{{ field.id_for_label }}')"
-                      ontouchend="stopDictation()"
-                      title="Press and hold to speak">
-                <i class="fa-solid fa-microphone mic-icon"></i>
-              </button>
+          {{ field }}
+          {% if field.field.required %}
+              <small class="form-text text-muted">*Required field</small>
             {% endif %}
-          </div>
           {% if field.errors %}
             <p class="error">{{ field.errors }}</p>
           {% endif %}

@@ -17,7 +17,7 @@
                 <img src="{% static 'images/0-1566_tool-png-transparent-image-tools-black-and-white.png' %}" alt="No image available">
             {% endif %}
             <h3>{{ tool.name }}</h3>
-            <p><strong>Tracking #:</strong> {{ tool.tracking_number }}</p>
+            <p><strong>Tracking #:</strong> {{ tool.inventory_number }}</p>
             <a href="{% url 'tool-detail' tool.id %}" class="btn">Details</a>
         </div>
     {% endfor %}
