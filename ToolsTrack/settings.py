@@ -12,16 +12,17 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
-from decouple import config, Config, RepositoryEnv
+from decouple import config as decouple_config, RepositoryEnv
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-if os.environ.get('WEBSITE_SITE_NAME'):
-    # On Azure: use environment variables only (no .env file)
-    config = Config()
+if os.environ.get("WEBSITE_SITE_NAME"):
+    # Running on Azure
+    config = os.environ.get
 else:
-    # Local development: load from .env file
+    # Local development
+    from decouple import Config
     config = Config(RepositoryEnv(BASE_DIR / '.env'))
 
 # Quick-start development settings - unsuitable for production
@@ -31,7 +32,7 @@ else:
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config("DEBUG")
+DEBUG = config("DEBUG") == "True"
 
 ALLOWED_HOSTS = config("ALLOWED_HOSTS").split(",")
 
