@@ -21,11 +21,11 @@ def dashboard_view(request):
 
     if search_query:
         tools_qs = tools_qs.filter(
-            Q(name__iexact=search_query) |
-            Q(brand_name__iexact=search_query) |
-            Q(inventory_number=search_query) |
-            Q(room__iexact=search_query) |
-            Q(section_number=search_query)
+            Q(name__icontains=search_query) |
+            Q(brand_name__icontains=search_query) |
+            Q(inventory_number__icontains=search_query) |
+            Q(room__icontains=search_query) |
+            Q(section_number__icontains=search_query)
         )
 
     categories = Category.objects.filter(

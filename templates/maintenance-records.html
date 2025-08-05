@@ -23,7 +23,7 @@
           <th>Type</th>
           <th>Performed By</th>
           <th>Cost</th>
-          <th>Notes</th>
+          <th class="notes-cell">Notes</th>
         </tr>
       </thead>
       <tbody>
@@ -33,7 +33,7 @@
             <td>{{ record.maintenance_type }}</td>
             <td>{{ record.performed_by }}</td>
             <td>${{ record.cost|default:"—" }}</td>
-            <td>{{ record.notes|default:"—" }}</td>
+            <td class="notes-cell">{{record.notes|default:"—"}}</td>
           </tr>
         {% endfor %}
       </tbody>

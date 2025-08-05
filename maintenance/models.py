@@ -8,7 +8,7 @@ class ToolMaintenance(models.Model):
     maintenance_type = models.CharField(max_length=20)  # e.g. 'Sharpening', 'Battery Replacement'
     performed_by = models.CharField(max_length=20, blank=True, null=True)  # e.g. 'Self', 'Repair Shop'
     cost = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True)
-    notes = models.TextField(blank=True, null=True)
+    notes = models.TextField(blank=True, null=True, max_length=100)
 
     class Meta:
         ordering = ['-date']
