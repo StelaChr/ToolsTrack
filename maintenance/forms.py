@@ -10,6 +10,6 @@ class ToolMaintenanceForm(forms.ModelForm):
         widgets = {
             'maintenance_type': forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' Example: regular cleaning, repairs, replacements of worn parts etc.'}),
             'performed_by': forms.TextInput(attrs={'class': 'form-control', 'placeholder': ' Example: Individual or team you hire'}),
-            'cost': forms.NumberInput(attrs={'class': 'form-control'}),
+            'cost': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': ' Max 8 digits, 2 after decimal point'}),
             'notes': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
         }

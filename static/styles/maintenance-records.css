@@ -9,6 +9,9 @@
   border: 1px solid #ddd;
   text-align: left;
   vertical-align: top;
+    white-space: normal;       /* Allow text to wrap */
+  word-wrap: break-word;     /* Break long words if needed */
+  word-break: break-word;
 }
 
 .table th {
@@ -42,7 +45,7 @@
 
 
 .notes-cell {
-  max-width: 300px; /* Optional: controls how wide the Notes column can grow */
+  max-width: 200px; /* Optional: controls how wide the Notes column can grow */
   height: 5rem; /* Set max height of the cell */
   overflow-y: auto; /* Add vertical scrolling */
   white-space: pre-wrap; /* Keep line breaks */
